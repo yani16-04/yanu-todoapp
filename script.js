@@ -33,13 +33,13 @@ function displayTasks() {
 
     li.innerHTML = `
       <div>
-        <span class="task-info">${task.text}</span><br>
-        <small>${task.date} ${task.time}</small>
+        <span class="task-info">${task.text}</span>
+        <small>${task.date || ""} ${task.time || ""}</small>
       </div>
 
       <div class="task-buttons">
-        <button onclick="editTask(${task.id})">Edit</button>
-        <button class="delete" onclick="deleteTask(${task.id})">Delete</button>
+        <button class="edit" onclick="editTask(${task.id})">✏️</button>
+        <button class="delete" onclick="deleteTask(${task.id})">🗑️</button>
       </div>
     `;
 
@@ -62,7 +62,7 @@ function editTask(id) {
   }
 }
 
-/* 🔔 ALARM FUNCTION */
+/* 🔔 Alarm */
 function setAlarm(task) {
   if (!task.date || !task.time) return;
 
@@ -73,13 +73,13 @@ function setAlarm(task) {
 
   if (timeout > 0) {
     setTimeout(() => {
-      alert("⏰ Task Reminder: " + task.text);
+      alert("⏰ Reminder: " + task.text);
       playSound();
     }, timeout);
   }
 }
 
-/* 🔊 SOUND */
+/* 🔊 Sound */
 function playSound() {
   let audio = new Audio("https://www.soundjay.com/buttons/sounds/beep-01a.mp3");
   audio.play();
